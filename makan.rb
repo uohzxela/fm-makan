@@ -22,7 +22,7 @@ class MakanSpot
   property :name, Text, :required => true
   property :price, String, :required => true
   property :notes, Text
-  property :url, String
+  property :url, Text
   property :address, Text, :required => true
 end
  

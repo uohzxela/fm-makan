@@ -8,7 +8,6 @@ gem 'datamapper'
 gem 'sinatra-redirect-with-flash'
 gem 'builder'
 gem 'shotgun'
-gem 'pg'
 
 group :production do
     gem "pg"
