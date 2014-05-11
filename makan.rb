@@ -14,8 +14,8 @@ class MakanSpot
   property :name, Text, :required => true
   property :price, String, :required => true
   property :notes, Text
-  property :url, Text
-  property :address, Text
+  property :url, String
+  property :address, Text, :required => true
 end
  
 DataMapper.finalize.auto_upgrade!
@@ -57,8 +57,8 @@ post '/' do
 	s = MakanSpot.new
 	s.name = params[:name]
 	s.price = params[:price]
-	s.address = params[:address]
-  s.url = params[:url]
+	s.address = params[:url]
+  s.url = prependHttp(params[:url])
   s.notes = params[:notes]
  
    	if s.save
@@ -68,7 +68,23 @@ post '/' do
     end
 end
 
-
+get '/filter/:price' do
+  @spots = MakanSpot.all :order => :id.desc, :price => params[:price]
+  @title = 'All Spots'
+  @getColor = lambda do |price|
+    if price == "$"
+      return "green"
+    elsif price == "$$"
+      return "orange"
+    else 
+      return "red"
+    end
+  end
+  if @spots.empty?
+    flash[:error] = 'No spots found. Add your first below.'
+  end
+  erb :home
+end
 
 get '/:id' do
 	@spot = MakanSpot.get params[:id]
@@ -81,7 +97,7 @@ put '/:id' do
 	s.name = params[:name]
 	s.price = params[:price]
   s.address = params[:address]
-  s.url = params[:url]
+  s.url = prependHttp(params[:url])
   s.notes = params[:notes]
  	if s.save
         redirect '/', :notice => 'Makan spot updated successfully.'
@@ -112,5 +128,13 @@ def getColor(price)
     return "orange"
   else 
     return "red"
+  end
+end
+
+def prependHttp(url)
+  if url.downcase.include?("http://") || url.empty?
+    url
+  else
+    url.insert(0, "http://")
   end
 end

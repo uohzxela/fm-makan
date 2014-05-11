@@ -1,13 +1,23 @@
 <section id="add">
-    <p> add your favorite makan spot  <a href="/add">&#10133;</a></p>
+    <div> 
+      <a href="/add">&#10133;</a> add your favorite makan spot  
+      <div style = "float: right">
+      filter by <a href="/filter/$"><font color = "green">$</font></a> | <a href="/filter/$$"><font color = "orange">$$</font></a> | <a href="/filter/$$$"><font color = "red">$$$</font></a>
+      </div>
+  </div>
 </section>
  
 
 <% @spots.each do |spot| %>
   <article>
     <p>
-      <%=h spot.name %>
+      <% if !spot.url.empty? %>
+        <a href = "<%= spot.url %>"><%=h spot.name %></a>
+      <% else %>
+        <%=h spot.name %>
+      <% end %>
       <span><font color = "<%= @getColor.call(spot.price) %>"><small>[<%= spot.price%>]</small></font></span>
+      <span><small><%= spot.address%></small></span>
     </p>
     <p class="links">
       <a href="/<%= spot.id %>">&#9997;</a>
