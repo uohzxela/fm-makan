@@ -6,7 +6,15 @@ require 'sinatra/redirect_with_flash'
 enable :sessions
 use Rack::Flash, :sweep => true
 
-DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/makan.db")
+#DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/makan.db")
+
+ configure :development do
+    DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/makan.db")
+end
+
+configure :production do
+    DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_PURPLE_URL'])
+end
  
 class MakanSpot
   include DataMapper::Resource
