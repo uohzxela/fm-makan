@@ -65,7 +65,7 @@ post '/' do
 	s = MakanSpot.new
 	s.name = params[:name]
 	s.price = params[:price]
-	s.address = params[:url]
+	s.address = params[:address]
   s.url = prependHttp(params[:url])
   s.notes = params[:notes]
  
