@@ -17,7 +17,7 @@
         <%=h spot.name %>
       <% end %>
       <span><font color = "<%= @getColor.call(spot.price) %>"><small>[<%= spot.price%>]</small></font></span>
-      <span><small><%= spot.address%></small></span>
+      <span><small>@<%= spot.address%></small></span>
     </p>
     <p class="links">
       <a href="/<%= spot.id %>">&#9997;</a>
