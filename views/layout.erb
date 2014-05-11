@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <title><%= @title + ' | Recall' %></title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/field.css">
+<script src="/field.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <header>
+    <hgroup>
+      <h1><a href="/"><font color = "purple">FM</font>akan</a></h1>
+      <small>@SG</small>
+    </hgroup>
+  </header>
+ 
+  <div id="main">
+    <% if flash[:notice] %>
+        <p><font color = "green" ><%= flash[:notice] %></font></p>
+    <% end %>
+     
+    <% if flash[:error] %>
+        <p> <font color = "red" ><%= flash[:error] %></font></p>
+    <% end %>
+    <%= yield %>
+  </div>
+ 
+  <footer align = "center">
+    <p><small>An app for <a href="http://favoritemedium.com">Favorite Medium</a>.</small></p>
+  </footer>
+</body>
+</html>

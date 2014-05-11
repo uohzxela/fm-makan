@@ -1,0 +1,47 @@
+<% if @spot %>
+  <form action="/<%= @spot.id %>" method="post" role="form" style="width:400px; margin: 0 auto;">
+    <input type="hidden" name="_method" value="put">
+
+    <h5><p> Edit makan spot or <a href="/<%= @spot.id %>/delete">Delete</a></p> </h5>
+    <div class="required-field-block">
+        <input type="text" name = "name" placeholder="Name of restaurant or bar" class="form-control" value = "<%=h @spot.name %>">
+        <div class="required-icon">
+            <div class="text">*</div>
+        </div>
+    </div>
+	<div class="radio-inline">
+	  <label>
+	    <input type="radio" name="price" value="$" <% if @spot.price == "$" %> checked <% end %>>
+	    <font color = "green">$</font> <small>: <$20/pax</small>
+	  </label>
+	</div>
+	<div class="radio-inline">
+	  <label>
+	    <input type="radio" name="price" value="$$" <% if @spot.price =="$$" %> checked <% end %>>
+		<font color = "orange">$$</font> <small>: >$20/pax</small>
+	  </label>
+	</div>
+	<div class="radio-inline">
+	  <label>
+	    <input type="radio" name="price" value="$$$" <% if @spot.price == "$$$" %> checked <% end %>>
+		<font color = "red">$$$</font> <small>: >$50/pax</small>
+	  </label>
+	</div>
+    <div class="required-field-block">
+        <input type="text" name = "address" placeholder="Address" class="form-control" value = "<%=h @spot.address %>">
+        <div class="required-icon">
+            <div class="text">*</div>
+        </div>
+    </div>
+
+    <input type="text" name = "url" placeholder="URL" class="form-control" value = "<%=h @spot.url %>">
+
+    <div class="required-field-block">
+        <textarea rows="3" name = "notes" class="form-control" placeholder="Notes"><%=h @spot.notes %></textarea>
+    </div>
+    
+    <button class="btn btn-primary">Update</button>
+
+<% else %>
+  <p>Makan spot not found.</p>
+<% end %>

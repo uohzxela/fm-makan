@@ -1,0 +1,17 @@
+<section id="add">
+    <p> add your favorite makan spot  <a href="/add">&#10133;</a></p>
+</section>
+ 
+
+<% @spots.each do |spot| %>
+  <article>
+    <p>
+      <%=h spot.name %>
+      <span><font color = "<%= @getColor.call(spot.price) %>"><small>[<%= spot.price%>]</small></font></span>
+    </p>
+    <p class="links">
+      <a href="/<%= spot.id %>">&#9997;</a>
+    </p>
+    <p class="meta"> <%= spot.notes %></p>
+  </article>
+<% end %>

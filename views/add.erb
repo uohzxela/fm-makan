@@ -1,0 +1,45 @@
+
+
+<form action = "/" method ="post" role="form" style="width:400px; margin: 0 auto;">
+    <h5>Add a makan spot</h5>
+    
+    <div class="required-field-block">
+        <input type="text" name = "name" placeholder="Name of restaurant or bar" class="form-control">
+        <div class="required-icon">
+            <div class="text">*</div>
+        </div>
+    </div>
+
+	<div class="radio-inline">
+	  <label>
+	    <input type="radio" name="price" value="$" checked>
+	     <font color = "green">$</font> <small>: <$20/pax</small>
+	  </label>
+	</div>
+	<div class="radio-inline">
+	  <label>
+	    <input type="radio" name="price" value="$$">
+		<font color = "orange">$$</font> <small>: >$20/pax</small>	
+	  </label>
+	</div>
+	<div class="radio-inline">
+	  <label>
+	    <input type="radio" name="price" value="$$$">
+		<font color = "red">$$$</font> <small>: >$50/pax</small>
+	  </label>
+	</div>
+    <div class="required-field-block">
+        <input type="text" name = "address" placeholder="Address" class="form-control">
+        <div class="required-icon">
+            <div class="text">*</div>
+        </div>
+    </div>
+
+    <input type="text" name = "url" placeholder="URL" class="form-control">
+
+    <div class="required-field-block">
+        <textarea rows="3" name = "notes" class="form-control" placeholder="Notes"></textarea>
+    </div>
+    
+    <button class="btn btn-primary">Add</button>
+</form>

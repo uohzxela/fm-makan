@@ -1,0 +1,13 @@
+<% if @spot %>
+  
+  <form action="/<%= @spot.id %>" method="post" style="width:400px; margin: 0 auto;">
+  	<p>Are you sure you want to delete the following makan spot: <em><%=h @spot.name %></em>?</p>
+    <input type="hidden" name="_method" value="delete">
+    <div align = "center">
+    	<button class="btn btn-danger">Delete</button>
+    	<p>or <a href="/<%= @spot.id %>">cancel</a></p>
+	</div>
+  </form>
+<% else %>
+  <p>Makan spot not found.</p>
+<% end %>
