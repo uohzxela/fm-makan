@@ -23,7 +23,7 @@ class MakanSpot
   property :name, Text, :required => true
   property :price, String, :required => true
   property :notes, Text
-  property :url, String
+  property :url, Text
   property :address, Text, :required => true
 end
  
@@ -68,6 +68,7 @@ post '/' do
 	s.price = params[:price]
 	s.address = params[:address]
   s.url = prependHttp(CGI.escape(params[:url]))
+  #s.url = prependHttp(CGI.escape("http://www.hungrygowhere.com/singapore/asia_grand_restaurant_odeon_towers/"))
   s.notes = params[:notes]
  
    	if s.save
@@ -141,7 +142,7 @@ def getColor(price)
 end
 
 def prependHttp(url)
-  if url.downcase.include?("http://") || url.empty?
+  if url.downcase.include?("http") || url.empty?
     url
   else
     url.insert(0, "http://")
