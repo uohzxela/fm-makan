@@ -28,13 +28,7 @@ class MakanSpot
   property :address, Text, :required => true
 end
 
-migration 1, :modify_url_length do
-  up do
-    execute(<<-SQL)
-    ALTER TABLE MakanSpot ALTER COLUMN url TYPE VARCHAR(500)
-    SQL
-  end
-end
+
  
 DataMapper.finalize.auto_upgrade!
 
