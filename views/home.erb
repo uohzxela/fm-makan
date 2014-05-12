@@ -12,7 +12,7 @@
   <article>
     <p>
       <% if !spot.url.empty? %>
-        <a href = "<%= CGI.unescape(spot.url) %>"><%=h spot.name %></a>
+        <a href = "<%= spot.url %>"><%=h spot.name %></a>
       <% else %>
         <%=h spot.name %>
       <% end %>

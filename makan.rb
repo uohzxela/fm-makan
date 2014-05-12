@@ -67,8 +67,8 @@ post '/' do
 	s.name = params[:name]
 	s.price = params[:price]
 	s.address = params[:address]
-  s.url = prependHttp(CGI.escape(params[:url]))
-  #s.url = prependHttp(CGI.escape("http://www.hungrygowhere.com/singapore/asia_grand_restaurant_odeon_towers/"))
+  s.url = prependHttp(params[:url])
+  #s.url = prependHttp("http://www.hungrygowhere.com/singapore/asia_grand_restaurant_odeon_towers/")
   s.notes = params[:notes]
  
    	if s.save
