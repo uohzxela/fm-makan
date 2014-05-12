@@ -3,6 +3,7 @@ require 'data_mapper'
 require 'rack-flash'
 require 'sinatra/redirect_with_flash'
 require 'cgi'
+require 'dm-migrations/migration_runner'
  
 enable :sessions
 use Rack::Flash, :sweep => true
@@ -25,6 +26,14 @@ class MakanSpot
   property :notes, Text
   property :url, Text
   property :address, Text, :required => true
+end
+
+migration 1, :modify_url_length do
+  up do
+    execute(<<-SQL)
+    ALTER TABLE MakanSpot ALTER COLUMN url TYPE VARCHAR(500)
+    SQL
+  end
 end
  
 DataMapper.finalize.auto_upgrade!
