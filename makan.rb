@@ -2,6 +2,7 @@ require 'sinatra'
 require 'data_mapper'
 require 'rack-flash'
 require 'sinatra/redirect_with_flash'
+require 'cgi'
  
 enable :sessions
 use Rack::Flash, :sweep => true
@@ -22,7 +23,7 @@ class MakanSpot
   property :name, Text, :required => true
   property :price, String, :required => true
   property :notes, Text
-  property :url, Text
+  property :url, String
   property :address, Text, :required => true
 end
  
@@ -66,7 +67,7 @@ post '/' do
 	s.name = params[:name]
 	s.price = params[:price]
 	s.address = params[:address]
-  s.url = prependHttp(params[:url])
+  s.url = prependHttp(CGI.escape(params[:url]))
   s.notes = params[:notes]
  
    	if s.save
